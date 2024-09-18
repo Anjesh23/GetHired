@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class PostController {
 
     @Autowired
@@ -17,12 +18,12 @@ public class PostController {
     @Autowired
     SearchRepo srepo;
 
-    @GetMapping("/Post")
+    @GetMapping("/allPosts")
     public List<Post> getAllPosts() {
         return repo.findAll();
     }
 
-    @GetMapping("/Post/{text}")
+    @GetMapping("/posts/{text}")
     public List<Post> search(@PathVariable String text){
         return srepo.findByText(text);
     }
